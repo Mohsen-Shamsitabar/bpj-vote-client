@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 const App = () => {
   return (
     <BrowserRouter>
-      <main id="main">
+      <main>
         <Routes>
           <Route
             path={ROUTES.HOME_PAGE}

@@ -2,17 +2,17 @@ import type { SystemSX } from "@/types/mui.ts";
 import type { Theme } from "@mui/material";
 
 export const root: SystemSX = (theme: Theme) => ({
-  border: "1px solid black",
-  margin: theme.spacing(2, 0),
+  margin: theme.spacing(10, 0),
+  position: "relative",
 });
 
 export const container: SystemSX = (theme: Theme) => ({
-  border: "1px solid red",
-  padding: theme.spacing(1, 0),
+  border: `${theme.spacing(0.25)} solid ${theme.palette.secondary.main}`,
+  borderRadius: theme.spacing(1),
+  padding: theme.spacing(1),
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center",
   gap: theme.spacing(1.5),
 });
 
@@ -21,9 +21,15 @@ export const textContainer: SystemSX = {
 };
 
 export const logoContainer: SystemSX = (theme: Theme) => ({
-  width: theme.spacing(8),
+  width: theme.spacing(10),
   aspectRatio: "1/1",
   margin: "auto",
+  position: "relative",
+  top: 0,
+  transform: "translateY(-50%)",
+  backgroundColor: theme.palette.background.default,
+  borderRadius: "50%",
+  marginBottom: "-25%",
 });
 
 export const otpContainer: SystemSX = {

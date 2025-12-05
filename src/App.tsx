@@ -1,6 +1,7 @@
 import ROUTES from "@/constants/routes.ts";
 import LoginPage from "@/pages/LoginPage.tsx";
 import NotFoundPage from "@/pages/NotFoundPage.tsx";
+import OtpPage from "@/pages/OtpPage.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 
 const App = () => {
@@ -11,6 +12,11 @@ const App = () => {
           <Route
             path={ROUTES.HOME_PAGE}
             element={<LoginPage />}
+          />
+
+          <Route
+            path={ROUTES.OTP_PAGE}
+            element={<OtpPage />}
           />
 
           <Route

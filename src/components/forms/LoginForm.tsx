@@ -57,7 +57,7 @@ const LoginForm = (props: Props) => {
           color="primary"
           variant="contained"
           type="submit"
-          sx={sx.button}
+          fullWidth
         >
           Submit
         </Button>

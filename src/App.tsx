@@ -23,6 +23,7 @@ const App = () => {
             path={ROUTES.VOTER_INFO_PAGE}
             element={<VoterInformationPage />}
           />
+
           <Route
             path="*"
             element={<NotFoundPage />}

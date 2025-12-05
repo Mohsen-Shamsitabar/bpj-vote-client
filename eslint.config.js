@@ -48,6 +48,7 @@ export default defineConfig([
       "no-unused-private-class-members": "warn",
       "no-promise-executor-return": "error",
       "no-unmodified-loop-condition": "warn",
+      "react-refresh/only-export-components": "off",
       eqeqeq: ["error", "smart"],
       "no-duplicate-imports": [
         "error",

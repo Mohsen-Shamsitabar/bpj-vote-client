@@ -1,67 +1,46 @@
-import * as sx from "@/styles/string-field-widget.ts";
-import type { SystemSX } from "@/types/mui.ts";
-import mergeSx from "@/utils/merge-sx.ts";
-import { FormControl, FormHelperText, Input, InputLabel } from "@mui/material";
 import {
-  Controller,
-  useFormContext,
-  type ControllerFieldState,
-  type FieldValues,
-  type Path,
-} from "react-hook-form";
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import type { InputHTMLAttributes } from "react";
+import { useFormContext, type FieldValues, type Path } from "react-hook-form";
 
 type Props<T extends FieldValues> = {
   name: Path<T>;
   label: string;
-  type?: "text" | "password";
-  fullWidth?: boolean;
+  type?: InputHTMLAttributes<HTMLInputElement>["type"];
   disabled?: boolean;
-  sx?: SystemSX;
+  placeholder?: string;
+  required?: boolean;
 };
 
 const StringFieldWidget = <T extends FieldValues>(props: Props<T>) => {
-  const { label, name, disabled, fullWidth, sx: sxProp, type } = props;
+  const { label, name, disabled, type, placeholder, required } = props;
 
   const { control } = useFormContext();
 
-  const renderHelperText = (fieldState: ControllerFieldState) => {
-    const { error } = fieldState;
-
-    const hasError = error;
-
-    const errorMessage = !error ? "0" : error.message;
-
-    return (
-      <FormHelperText
-        sx={mergeSx(sx.helperText, {
-          visibility: !hasError ? "hidden" : "visible",
-        })}
-      >
-        {errorMessage}
-      </FormHelperText>
-    );
-  };
-
   return (
-    <Controller
-      name={name}
+    <FormField
+      disabled={disabled}
       control={control}
-      render={({ field, fieldState }) => (
-        <FormControl
-          fullWidth={fullWidth}
-          disabled={disabled}
-          error={!!fieldState.error}
-          sx={mergeSx(sx.root, sxProp)}
-        >
-          <InputLabel sx={sx.inputLabel}>{label}</InputLabel>
-
-          <Input
-            {...field}
-            type={type}
-          />
-
-          {renderHelperText(fieldState)}
-        </FormControl>
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <Input
+              required={required}
+              type={type}
+              placeholder={placeholder}
+              {...field}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
       )}
     />
   );

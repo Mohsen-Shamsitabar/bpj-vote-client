@@ -1,21 +1,20 @@
 import StringFieldWidget from "@/components/field-widgets/StringFieldWidget.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { Form } from "@/components/ui/form.tsx";
 import {
   loginFormSchema,
   type LoginFormSchema,
 } from "@/form-schemas/loginFormSchema.ts";
-import * as sx from "@/styles/login-form.ts";
-import type { SystemSX } from "@/types/mui.ts";
-import mergeSx from "@/utils/merge-sx.ts";
+import { cn } from "@/lib/utils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Stack } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 type Props = {
-  sx?: SystemSX;
+  className?: string;
 };
 
 const LoginForm = (props: Props) => {
-  const { sx: sxProp } = props;
+  const { className } = props;
 
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
@@ -30,39 +29,35 @@ const LoginForm = (props: Props) => {
   };
 
   return (
-    <Stack
-      sx={mergeSx(sx.root, sxProp)}
-      component="form"
-      dir="rtl"
-      onSubmit={form.handleSubmit(onSubmit)}
-    >
-      <FormProvider {...form}>
-        <Stack sx={sx.fieldContainer}>
+    <Form {...form}>
+      <form
+        className={cn("rtl flex flex-col items-center gap-8", className)}
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
+        <div className="flex w-full flex-col gap-4">
           <StringFieldWidget<LoginFormSchema>
+            required
             label="نام کاربری"
             name="username"
-            fullWidth
             type="text"
           />
 
           <StringFieldWidget<LoginFormSchema>
+            required
             label="رمز عبور"
             name="password"
-            fullWidth
             type="password"
           />
-        </Stack>
+        </div>
 
         <Button
-          color="primary"
-          variant="contained"
           type="submit"
-          fullWidth
+          className="w-full"
         >
           ورود
         </Button>
-      </FormProvider>
-    </Stack>
+      </form>
+    </Form>
   );
 };
 

@@ -59,7 +59,7 @@ const LoginForm = (props: Props) => {
           type="submit"
           fullWidth
         >
-          Submit
+          ورود
         </Button>
       </FormProvider>
     </Stack>

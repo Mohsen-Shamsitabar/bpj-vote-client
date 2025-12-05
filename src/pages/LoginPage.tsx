@@ -13,15 +13,15 @@ const LoginPage = () => {
         maxWidth="xs"
         sx={sx.container}
       >
+        <Box sx={sx.logoContainer}>
+          <Box sx={imageContainerSx}>{BpjLogo}</Box>
+        </Box>
+
         <Stack sx={sx.textContainer}>
           <Typography variant="h4">ورود</Typography>
 
           <Typography variant="h5">سامانه انتخابات آنلاین</Typography>
         </Stack>
-
-        <Box sx={sx.logoContainer}>
-          <Box sx={imageContainerSx}>{BpjLogo}</Box>
-        </Box>
 
         <LoginForm />
       </Container>

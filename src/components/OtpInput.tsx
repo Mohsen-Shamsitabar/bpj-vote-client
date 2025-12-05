@@ -1,5 +1,5 @@
 import { Input as BaseInput } from "@mui/base";
-import { Box, styled } from "@mui/system";
+import { Box, styled } from "@mui/material";
 import * as React from "react";
 
 const InputElement = styled("input")(
@@ -11,16 +11,16 @@ const InputElement = styled("input")(
   padding: ${theme.spacing(0.5, 0)};
   border-radius: ${theme.spacing(0.5)};
   text-align: center;
-  border: 1px solid black;
-  box-shadow: 0 2px 4px black;
+  border: ${theme.spacing(0.1)} solid ${theme.palette.secondary.main};
+  box-shadow: 0 ${theme.spacing(0.125)} ${theme.spacing(0.25)} ${theme.palette.secondary.main};
 
   &:hover {
-    border-color: blue;
+    border-color: ${theme.palette.primary.main};
   }
 
   &:focus {
-    border-color: blue;
-    box-shadow: 0 0 0 3px blue;
+    border-color: ${theme.palette.primary.main};
+    box-shadow: 0 ${theme.spacing(0.125)} ${theme.spacing(0.25)} ${theme.palette.primary.main};
   }
 
   /* firefox */

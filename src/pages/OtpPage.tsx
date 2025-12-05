@@ -33,17 +33,21 @@ const OtpPage = () => {
         maxWidth="xs"
         sx={sx.container}
       >
+        <Box sx={sx.logoContainer}>
+          <Box sx={imageContainerSx}>{BpjLogo}</Box>
+        </Box>
+
         <Stack sx={sx.textContainer}>
           <Typography variant="h4">ورود</Typography>
 
           <Typography variant="h5">سامانه انتخابات آنلاین</Typography>
         </Stack>
 
-        <Box sx={sx.logoContainer}>
-          <Box sx={imageContainerSx}>{BpjLogo}</Box>
-        </Box>
-
-        <Box sx={sx.otpContainer}>
+        <Stack
+          justifyContent="center"
+          alignItems="center"
+          sx={sx.otpContainer}
+        >
           <OTPInput
             length={otpLength}
             onChange={setOtp}
@@ -52,7 +56,7 @@ const OtpPage = () => {
             disabled={disabled}
             gap={0.5}
           />
-        </Box>
+        </Stack>
 
         <Button
           color="primary"
@@ -61,7 +65,7 @@ const OtpPage = () => {
           onClick={onSubmit}
           disabled={disabled}
         >
-          Submit
+          ورود
         </Button>
       </Container>
     </Box>

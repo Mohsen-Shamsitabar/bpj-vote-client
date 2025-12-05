@@ -11,7 +11,3 @@ export const fieldContainer: SystemSX = (theme: Theme) => ({
   width: "100%",
   gap: theme.spacing(1),
 });
-
-export const button: SystemSX = {
-  width: "100%",
-};

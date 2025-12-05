@@ -1,31 +1,25 @@
 import LoginForm from "@/components/forms/LoginForm.tsx";
-import { imageContainerSx } from "@/global-sx.ts";
 import useBpjLogo from "@/hooks/useBpjLogo.tsx";
-import * as sx from "@/styles/login-page.ts";
-import { Box, Container, Stack, Typography } from "@mui/material";
 
 const LoginPage = () => {
   const BpjLogo = useBpjLogo();
 
   return (
-    <Box sx={sx.root}>
-      <Container
-        maxWidth="xs"
-        sx={sx.container}
-      >
-        <Box sx={sx.logoContainer}>
-          <Box sx={imageContainerSx}>{BpjLogo}</Box>
-        </Box>
+    <div className="relative container mx-auto my-40">
+      <div className="border-secondary flex flex-col justify-center gap-6 rounded-2xl border p-4">
+        <div className="bg-background absolute top-0 right-0 left-0 m-auto aspect-square w-40 -translate-y-1/2 rounded-full">
+          <div className="image-container">{BpjLogo}</div>
+        </div>
 
-        <Stack sx={sx.textContainer}>
-          <Typography variant="h4">ورود</Typography>
+        <div className="mt-20 text-center text-3xl">
+          <h4 className="font-semibold">ورود</h4>
 
-          <Typography variant="h5">سامانه انتخابات آنلاین</Typography>
-        </Stack>
+          <h5>سامانه انتخابات آنلاین</h5>
+        </div>
 
         <LoginForm />
-      </Container>
-    </Box>
+      </div>
+    </div>
   );
 };
 

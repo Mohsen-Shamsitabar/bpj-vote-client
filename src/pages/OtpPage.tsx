@@ -1,19 +1,44 @@
-import OTPInput from "@/components/OtpInput.tsx";
-import { imageContainerSx } from "@/global-sx.ts";
+import { Button } from "@/components/ui/button.tsx";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp.tsx";
 import useBpjLogo from "@/hooks/useBpjLogo.tsx";
-import * as sx from "@/styles/otp-page.ts";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import * as React from "react";
 
 const OtpPage = () => {
   const [otp, setOtp] = React.useState("");
   const [disabled, setDisabled] = React.useState(false);
 
+  const otpLength = React.useMemo(() => 4, []);
+
   const BpjLogo = useBpjLogo();
 
-  const otpLength = React.useMemo(() => 5, []);
-
   const isFinished = otp.length === otpLength;
+
+  const renderInputs = () => {
+    const elements: React.JSX.Element[] = [];
+
+    for (let i = 0; i < otpLength; i++) {
+      const input = (
+        <InputOTPGroup key={`${i}-input`}>
+          <InputOTPSlot index={i} />
+        </InputOTPGroup>
+      );
+
+      elements.push(input);
+
+      if (i >= otpLength - 1) continue;
+
+      const separator = <InputOTPSeparator key={`${i}-separator`} />;
+
+      elements.push(separator);
+    }
+
+    return elements;
+  };
 
   const onSubmit = () => {
     setDisabled(true);
@@ -28,47 +53,41 @@ const OtpPage = () => {
   }, [isFinished, onSubmit]);
 
   return (
-    <Box sx={sx.root}>
-      <Container
-        maxWidth="xs"
-        sx={sx.container}
-      >
-        <Box sx={sx.logoContainer}>
-          <Box sx={imageContainerSx}>{BpjLogo}</Box>
-        </Box>
+    <div className="relative container mx-auto my-40">
+      <div className="border-secondary flex flex-col justify-center gap-6 rounded-2xl border p-4">
+        <div className="bg-background absolute top-0 right-0 left-0 m-auto aspect-square w-40 -translate-y-1/2 rounded-full">
+          <div className="image-container">{BpjLogo}</div>
+        </div>
 
-        <Stack sx={sx.textContainer}>
-          <Typography variant="h4">ورود</Typography>
+        <div className="mt-20 text-center text-3xl">
+          <h4 className="font-semibold">ورود</h4>
 
-          <Typography variant="h5">سامانه انتخابات آنلاین</Typography>
-        </Stack>
+          <h5>سامانه انتخابات آنلاین</h5>
+        </div>
 
-        <Stack
-          justifyContent="center"
-          alignItems="center"
-          sx={sx.otpContainer}
+        <div
+          className="rtl flex w-full items-center justify-center"
+          style={{ direction: "ltr" }}
         >
-          <OTPInput
-            length={otpLength}
-            onChange={setOtp}
-            value={otp}
-            separator={<span>-</span>}
+          <InputOTP
             disabled={disabled}
-            gap={0.5}
-          />
-        </Stack>
+            value={otp}
+            onChange={setOtp}
+            maxLength={otpLength}
+          >
+            {renderInputs()}
+          </InputOTP>
+        </div>
 
         <Button
-          color="primary"
-          variant="contained"
-          fullWidth
-          onClick={onSubmit}
           disabled={disabled}
+          className="w-full"
+          onClick={onSubmit}
         >
           ورود
         </Button>
-      </Container>
-    </Box>
+      </div>
+    </div>
   );
 };
 

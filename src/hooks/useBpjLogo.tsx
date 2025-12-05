@@ -1,9 +1,9 @@
-import { useTheme } from "@mui/material";
+import { useTheme } from "@/providers/ThemeProvider.tsx";
 
 const useBpjLogo = () => {
   const theme = useTheme();
 
-  const isDarkMode = theme.palette.mode === "dark";
+  const isDarkMode = theme.mode === "dark";
 
   const imagePath = isDarkMode
     ? "/images/logo-white.png"

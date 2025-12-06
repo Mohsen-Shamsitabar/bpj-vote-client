@@ -6,7 +6,7 @@ type Props = {
   label: string;
 };
 
-const VoterInfoGridItem = (props: Props) => {
+const VoterField = (props: Props) => {
   const { label, value } = props;
 
   return (
@@ -21,4 +21,4 @@ const VoterInfoGridItem = (props: Props) => {
   );
 };
 
-export default VoterInfoGridItem;
+export default VoterField;

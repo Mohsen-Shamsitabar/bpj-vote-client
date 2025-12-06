@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button.tsx";
-import VoterInfoGridItem from "@/components/VoterInfoGridItem.tsx";
+import VoterField from "@/components/VoterField.tsx";
 import { voterPropsToLabel } from "@/constants/labels.ts";
 import type { Voter, VoterProps } from "@/types/voter.ts";
 
@@ -17,11 +17,11 @@ const VoterInformationPage = () => {
     degree: "لیسانس",
   };
 
-  const renderGridItems = () => {
+  const renderVoterFields = () => {
     const keys = Object.keys(voter) as VoterProps[];
 
     return keys.map(key => (
-      <VoterInfoGridItem
+      <VoterField
         key={key}
         label={voterPropsToLabel[key]}
         value={voter[key]}
@@ -41,7 +41,7 @@ const VoterInformationPage = () => {
         <h6 className="text-xl">لطفا اطلاعات خود را برسی کنید!</h6>
       </div>
 
-      <div className="flex flex-col gap-3 px-4 py-8">{renderGridItems()}</div>
+      <div className="flex flex-col gap-3 px-4 py-8">{renderVoterFields()}</div>
 
       <Button
         onClick={handleOnContinueClick}

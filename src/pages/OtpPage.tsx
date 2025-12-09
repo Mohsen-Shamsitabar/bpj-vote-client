@@ -53,39 +53,42 @@ const OtpPage = () => {
   }, [isFinished, onSubmit]);
 
   return (
-    <div className="relative container mx-auto my-40">
-      <div className="border-secondary flex flex-col justify-center gap-6 rounded-2xl border p-4">
-        <div className="bg-background absolute top-0 right-0 left-0 m-auto aspect-square w-40 -translate-y-1/2 rounded-full">
-          <div className="image-container">{BpjLogo}</div>
-        </div>
+    <div className="bg-stars min-h-dvh px-6 pt-6">
+      <div className="bg-background relative container mx-auto my-40">
+        <div className="border-primary flex flex-col justify-center gap-6 rounded-2xl border p-4">
+          <div className="bg-background absolute top-0 right-0 left-0 m-auto aspect-square w-40 -translate-y-1/2 rounded-full">
+            <div className="image-container">{BpjLogo}</div>
+          </div>
 
-        <div className="mt-20 text-center text-3xl">
-          <h4 className="font-semibold">ورود</h4>
+          <div className="mt-20 text-center text-3xl">
+            <h4 className="font-semibold">ورود</h4>
 
-          <h5>سامانه انتخابات آنلاین</h5>
-        </div>
+            <h5>سامانه انتخابات آنلاین</h5>
+          </div>
 
-        <div
-          className="rtl flex w-full items-center justify-center"
-          style={{ direction: "ltr" }}
-        >
-          <InputOTP
-            disabled={disabled}
-            value={otp}
-            onChange={setOtp}
-            maxLength={otpLength}
+          <div
+            className="rtl flex w-full items-center justify-center"
+            style={{ direction: "ltr" }}
           >
-            {renderInputs()}
-          </InputOTP>
-        </div>
+            <InputOTP
+              disabled={disabled}
+              value={otp}
+              onChange={setOtp}
+              maxLength={otpLength}
+            >
+              {renderInputs()}
+            </InputOTP>
+          </div>
 
-        <Button
-          disabled={disabled}
-          className="w-full"
-          onClick={onSubmit}
-        >
-          ورود
-        </Button>
+          <Button
+            disabled={disabled}
+            variant="secondary"
+            className="w-full"
+            onClick={onSubmit}
+          >
+            ورود
+          </Button>
+        </div>
       </div>
     </div>
   );

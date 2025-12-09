@@ -52,6 +52,7 @@ const LoginForm = (props: Props) => {
 
         <Button
           type="submit"
+          variant="secondary"
           className="w-full"
         >
           ورود

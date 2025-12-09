@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button.tsx";
 import VoterField from "@/components/VoterField.tsx";
 import { voterPropsToLabel } from "@/constants/labels.ts";
+import ROUTES from "@/constants/routes.ts";
 import type { Voter, VoterProps } from "@/types/voter.ts";
 import { CircleArrowLeftIcon } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const VoterInformationPage = () => {
   const voter: Voter = {
@@ -18,6 +20,8 @@ const VoterInformationPage = () => {
     degree: "لیسانس",
   };
 
+  const navigate = useNavigate();
+
   const renderVoterFields = () => {
     const keys = Object.keys(voter) as VoterProps[];
 
@@ -31,13 +35,15 @@ const VoterInformationPage = () => {
   };
 
   const handleOnContinueClick = () => {
-    console.log("Continue");
+    console.log("Go to voting");
+
+    void navigate(ROUTES.VOTING_PAGE);
   };
 
   return (
     <div className="bg-stars min-h-dvh pt-6">
       <div className="container mx-auto px-6">
-        <div className="mb-6 flex flex-col gap-2 text-center">
+        <div className="my-6 flex flex-col gap-2 text-center">
           <h3 className="text-2xl font-bold md:text-3xl">
             لطفا اطلاعات خود را برسی کنید
           </h3>

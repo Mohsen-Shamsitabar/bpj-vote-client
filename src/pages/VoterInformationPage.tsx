@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button.tsx";
 import VoterField from "@/components/VoterField.tsx";
 import { voterPropsToLabel } from "@/constants/labels.ts";
 import type { Voter, VoterProps } from "@/types/voter.ts";
+import { CircleArrowLeftIcon } from "lucide-react";
 
 const VoterInformationPage = () => {
   const voter: Voter = {
@@ -34,21 +35,33 @@ const VoterInformationPage = () => {
   };
 
   return (
-    <div className="border-secondary container mx-auto flex flex-col gap-8 rounded-2xl border-0 p-8 md:border">
-      <div className="text-center">
-        <h5 className="text-2xl">به سایت انتخابات آنلاین خوش آمدید.</h5>
+    <div className="bg-stars min-h-dvh pt-6">
+      <div className="container mx-auto px-6">
+        <div className="mb-6 flex flex-col gap-2 text-center">
+          <h3 className="text-2xl font-bold md:text-3xl">
+            لطفا اطلاعات خود را برسی کنید
+          </h3>
+          <h4 className="text-primary font-semibold md:text-lg">
+            در صورت مغایرت، به اپراتور اطلاع دهید!
+          </h4>
+        </div>
 
-        <h6 className="text-xl">لطفا اطلاعات خود را برسی کنید!</h6>
+        <div className="bg-background border-border grid grid-cols-1 gap-4 rounded-3xl border p-4 md:grid-cols-3">
+          {renderVoterFields()}
+        </div>
+
+        <div className="my-4 flex items-center justify-center">
+          <Button
+            className="flex items-center justify-center"
+            variant="glass"
+            size="lg"
+            onClick={handleOnContinueClick}
+          >
+            <span>ادامه</span>
+            <CircleArrowLeftIcon />
+          </Button>
+        </div>
       </div>
-
-      <div className="flex flex-col gap-3 px-4 py-8">{renderVoterFields()}</div>
-
-      <Button
-        onClick={handleOnContinueClick}
-        className="w-full"
-      >
-        ادامه
-      </Button>
     </div>
   );
 };

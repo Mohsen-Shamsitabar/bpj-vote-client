@@ -1,9 +1,8 @@
-import { useTheme } from "@/providers/ThemeProvider.tsx";
-
 const useBpjLogo = () => {
-  const theme = useTheme();
+  // const theme = useTheme();
 
-  const isDarkMode = theme.mode === "dark";
+  // const isDarkMode = theme.mode === "dark";
+  const isDarkMode = true;
 
   const imagePath = isDarkMode
     ? "/images/logo-white.png"
